@@ -1,0 +1,25 @@
+.header {
+  background-color: rgb(104, 106, 121);
+}
+.header_button .webix_button,
+.header_button .webix_icon_btn.wxi-user,
+.webix_el_label.header_label .webix_el_box {
+  color: white;
+}
+.webix_layout_line > .webix_section > .webix_template {
+  font-size: 14px;
+}
+.webix_view .list_items {
+  background: lightgrey;
+}
+.webix_view .list {
+  background: lightgrey;
+}
+.webix_list_item {
+  border-bottom: none;
+}
+.webix_view.status {
+  color: green;
+  background: transparent;
+  text-align: center;
+}
