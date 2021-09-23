@@ -21,4 +21,5 @@
 .webix_view.status {
   color: green;
   background: transparent;
+  text-align: center;
 }

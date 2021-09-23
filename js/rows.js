@@ -1,6 +1,6 @@
 import { list, datataTable, form } from "./content.js";
 
-export let header = {
+export const header = {
   view: "toolbar",
   elements: [
     {
@@ -24,11 +24,11 @@ export let header = {
   css: "header"
 };
 
-export let content = {
+export const content = {
   cols: [list, { view: "resizer" }, datataTable, form]
 };
 
-export let footer = {
+export const footer = {
   cols: [
     {},
     {

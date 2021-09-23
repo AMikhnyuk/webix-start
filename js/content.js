@@ -1,6 +1,6 @@
 import { small_film_set } from "./data.js";
 
-export let list = {
+export const list = {
   rows: [
     {
       view: "list",
@@ -11,55 +11,41 @@ export let list = {
     },
     {},
     {
-      cols: [
-        {},
-        {
-          view: "template",
-          template: '<i class="webix_icon wxi-check"></i><span>Connected</span>',
-          autoheight: true,
-          minWidth: 130,
-          css: "status",
-          borderless: true
-        },
-        {}
-      ]
+      view: "template",
+      template: '<i class="webix_icon wxi-check"></i><span>Connected</span>',
+      autoheight: true,
+      minWidth: 130,
+      css: "status",
+      borderless: true
     }
   ],
   gravity: 20,
   css: "list",
   minWidth: 150
 };
-export let datataTable = {
+export const datataTable = {
   view: "datatable",
   data: small_film_set,
   autoConfig: true,
   gravity: 50,
   scrollX: false
 };
-export let form = {
-  rows: [
-    { view: "template", template: "EDIT FILMS", type: "section" },
+export const form = {
+  view: "form",
+  elements: [
+    { view: "template", template: "edit films", type: "section" },
+    { view: "text", label: "Title", width: 250 },
+    { view: "text", label: "Year", width: 250 },
+    { view: "text", label: "Rating", width: 250 },
+    { view: "text", label: "Votes", width: 250 },
     {
-      view: "form",
+      view: "toolbar",
       elements: [
-        { view: "text", label: "Title", width: 250 },
-        { view: "text", label: "Year", width: 250 },
-        { view: "text", label: "Rating", width: 250 },
-        { view: "text", label: "Votes", width: 250 }
-      ],
-      borderless: true
-    },
-    {
-      cols: [
         { view: "button", value: "Add new", align: "right", css: "webix_primary" },
         { view: "button", value: "Clear", align: "right" }
       ],
-      margin: 10,
-      paddingX: 15,
       borderless: true
     },
     {}
-  ],
-  gravity: 30,
-  paddingY: 21
+  ]
 };
