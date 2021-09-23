@@ -51,7 +51,7 @@ export let form = {
     },
     {
       cols: [
-        { view: "button", value: "Add new", align: "right", css: "form_blue_button" },
+        { view: "button", value: "Add new", align: "right", css: "webix_primary" },
         { view: "button", value: "Clear", align: "right" }
       ],
       margin: 10,

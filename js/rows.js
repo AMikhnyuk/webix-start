@@ -5,7 +5,8 @@ export let header = {
   elements: [
     {
       view: "label",
-      label: "My App"
+      label: "My App",
+      css: "header_label"
     },
     {
       view: "button",
@@ -15,7 +16,7 @@ export let header = {
       type: "icon",
       image: "./img/user.png",
       icon: "wxi-user",
-      css: "header_button"
+      css: "header_button webix_transparent"
     }
   ],
   height: 50,

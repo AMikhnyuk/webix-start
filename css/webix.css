@@ -1,18 +1,9 @@
 .header {
   background-color: rgb(104, 106, 121);
 }
-.webix_toolbar .webix_el_label .webix_el_box {
-  color: white;
-}
-.header_button.webix_secondary .webix_button {
-  color: white;
-  background: none;
-}
-.form_blue_button.webix_secondary .webix_button {
-  color: white;
-  background-color: rgb(11, 131, 167);
-}
-.webix_secondary .webix_button .webix_icon_btn {
+.header_button .webix_button,
+.header_button .webix_icon_btn.wxi-user,
+.webix_el_label.header_label .webix_el_box {
   color: white;
 }
 .webix_layout_line > .webix_section > .webix_template {
