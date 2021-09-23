@@ -1,0 +1,43 @@
+import { list, datataTable, form } from "./content.js";
+
+export let header = {
+  view: "toolbar",
+  elements: [
+    {
+      view: "label",
+      label: "My App"
+    },
+    {
+      view: "button",
+      label: "Profile",
+      width: 100,
+      align: "right",
+      type: "icon",
+      image: "./img/user.png",
+      icon: "wxi-user",
+      css: "header_button"
+    }
+  ],
+  height: 50,
+  paddingX: 10,
+  css: "header"
+};
+
+export let content = {
+  cols: [list, { view: "resizer" }, datataTable, form]
+};
+
+export let footer = {
+  cols: [
+    {},
+    {
+      view: "template",
+      template:
+        'The software is provided by <a href="https://webix.com">https://webix.com</a>. All rights reserved (c)',
+      autoheight: true,
+      minWidth: 500,
+      borderless: true
+    },
+    {}
+  ]
+};

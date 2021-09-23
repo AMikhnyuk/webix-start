@@ -1,0 +1,33 @@
+.header {
+  background-color: rgb(104, 106, 121);
+}
+.webix_toolbar .webix_el_label .webix_el_box {
+  color: white;
+}
+.header_button.webix_secondary .webix_button {
+  color: white;
+  background: none;
+}
+.form_blue_button.webix_secondary .webix_button {
+  color: white;
+  background-color: rgb(11, 131, 167);
+}
+.webix_secondary .webix_button .webix_icon_btn {
+  color: white;
+}
+.webix_layout_line > .webix_section > .webix_template {
+  font-size: 14px;
+}
+.webix_view .list_items {
+  background: lightgrey;
+}
+.webix_view .list {
+  background: lightgrey;
+}
+.webix_list_item {
+  border-bottom: none;
+}
+.webix_view.status {
+  color: green;
+  background: transparent;
+}
