@@ -39,10 +39,9 @@ export const form = {
     { view: "text", label: "Rating", width: 250 },
     { view: "text", label: "Votes", width: 250 },
     {
-      view: "toolbar",
-      elements: [
-        { view: "button", value: "Add new", align: "right", css: "webix_primary" },
-        { view: "button", value: "Clear", align: "right" }
+      cols: [
+        { view: "button", value: "Add new", css: "webix_primary" },
+        { view: "button", value: "Clear" }
       ],
       borderless: true
     },
