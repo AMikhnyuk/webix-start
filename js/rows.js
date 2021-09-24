@@ -2,6 +2,7 @@ import { list, datataTable, form } from "./content.js";
 
 export const header = {
   view: "toolbar",
+  id: "toolbar",
   elements: [
     {
       view: "label",
@@ -16,7 +17,11 @@ export const header = {
       type: "icon",
       image: "./img/user.png",
       icon: "wxi-user",
-      css: "header_button webix_transparent"
+      css: "header_button webix_transparent",
+      id: "profile_button",
+      click: function () {
+        $$("profile_sub-menu").show(this.getNode());
+      }
     }
   ],
   height: 50,
