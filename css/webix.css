@@ -23,3 +23,22 @@
   background: transparent;
   text-align: center;
 }
+.datatable_row_hover {
+  background-color: lightgray;
+}
+
+.users_list_item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.webix_list_item.hightlite {
+  background: rgb(233, 232, 232);
+}
+.webix_list_item {
+  border-bottom: 1px solid #edeff0;
+}
+.removeIcon:hover {
+  cursor: pointer;
+  opacity: 75%;
+}
