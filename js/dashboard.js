@@ -1,37 +1,45 @@
-import { small_film_set } from "./data.js";
-
-export const list = {
-  rows: [
-    {
-      view: "list",
-      data: ["Dashboard", "Users", "Products", "Location"],
-      scroll: false,
-      borderless: true,
-      css: "list_items"
-    },
-    {},
-    {
-      view: "template",
-      template: '<i class="webix_icon wxi-check"></i><span>Connected</span>',
-      autoheight: true,
-      minWidth: 130,
-      css: "status",
-      borderless: true
-    }
-  ],
-  gravity: 20,
-  css: "list",
-  minWidth: 150
-};
-export const datataTable = {
+const dashboard_datataTable = {
   view: "datatable",
   id: "datatable",
-  data: small_film_set,
-  autoConfig: true,
-  gravity: 50,
-  scrollX: false
+  select: true,
+  columns: [
+    {
+      id: "id",
+      header: { text: "", css: "column_border" },
+      width: 50,
+      css: { background: "#F4F5F9", "border-right": "1px solid #DADEE0" }
+    },
+    { id: "title", fillspace: true, header: ["Film Title", { content: "textFilter" }], sort: "string" },
+    { id: "year", header: ["Released", { content: "textFilter" }], width: 150, sort: "int" },
+    { id: "votes", header: ["Votes", { content: "textFilter" }], width: 150, sort: "string" },
+    {
+      id: "empty",
+      header: "",
+      width: 50,
+      template: '<span class="removeItem"><i class="webix_icon wxi-trash removeIcon"></i></span>'
+    }
+  ],
+  onClick: {
+    removeItem: function (e, id) {
+      if ($$("form").getValues().id === id.row) {
+        $$("form").clear();
+        $$("form").clearValidation();
+      }
+      this.remove(id);
+
+      return false;
+    }
+  },
+  on: {
+    onAfterSelect: function (id) {
+      let value = this.getItem(id);
+      $$("form").setValues(value);
+    }
+  },
+  hover: "datatable_row_hover",
+  gravity: 50
 };
-export const form = {
+const dashboard_form = {
   view: "form",
   id: "form",
   elements: [
@@ -50,12 +58,20 @@ export const form = {
       cols: [
         {
           view: "button",
-          value: "Add new",
+          value: "Save",
           css: "webix_primary",
           id: "form_button_add",
           click: function () {
-            if ($$("form").validate()) {
-              $$("datatable").add($$("form").getValues());
+            let form = $$("form");
+            let table = $$("datatable");
+            let item_data = form.getValues();
+
+            if (form.validate()) {
+              if (item_data.id) {
+                table.updateItem(item_data.id, item_data);
+              } else {
+                table.add(item_data);
+              }
               webix.message({ text: "validation is successful.", type: "success" });
             }
           }
@@ -90,10 +106,15 @@ export const form = {
       return +value !== 0 && webix.rules.isNotEmpty(value);
     },
     votes: function (value) {
-      return value < 100000;
+      let newValue = value.replace(",", ".");
+      return newValue < 100000;
     }
   },
   elementsConfig: {
     bottomPadding: 18
   }
+};
+export const dashboard = {
+  cols: [dashboard_datataTable, dashboard_form],
+  id: "Dashboard"
 };

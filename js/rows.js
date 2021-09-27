@@ -1,4 +1,6 @@
-import { list, datataTable, form } from "./content.js";
+import { dashboard } from "./dashboard.js";
+import { users } from "./users.js";
+import { products } from "./products.js";
 
 export const header = {
   view: "toolbar",
@@ -30,7 +32,41 @@ export const header = {
 };
 
 export const content = {
-  cols: [list, { view: "resizer" }, datataTable, form]
+  cols: [
+    {
+      rows: [
+        {
+          view: "list",
+          id: "list",
+          data: ["Dashboard", "Users", "Products", "Admin"],
+          scroll: false,
+          borderless: true,
+          css: "list_items",
+          select: true,
+          on: {
+            onAfterSelect: function (id) {
+              $$(id).show();
+            }
+          }
+        },
+        {},
+        {
+          view: "template",
+          template: '<i class="webix_icon wxi-check"></i><span>Connected</span>',
+          autoheight: true,
+          minWidth: 130,
+          css: "status",
+          borderless: true
+        }
+      ],
+      css: "list"
+    },
+    { view: "resizer" },
+    {
+      cells: [dashboard, users, products, { id: "Admin" }],
+      gravity: 6
+    }
+  ]
 };
 
 export const footer = {
