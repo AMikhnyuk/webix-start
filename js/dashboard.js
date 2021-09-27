@@ -20,8 +20,12 @@ const dashboard_datataTable = {
     }
   ],
   onClick: {
-    removeItem: function (e, id) {
-      this.remove(id);
+    removeItem: function (e, item) {
+      if ($$("form").id == item.row);
+      $$("form").clear();
+
+      this.remove(item);
+
       return false;
     }
   },
@@ -53,20 +57,19 @@ const dashboard_form = {
       cols: [
         {
           view: "button",
-          value: "Add new",
+          value: "Save",
           css: "webix_primary",
           id: "form_button_add",
           click: function () {
             let form = $$("form");
             let table = $$("datatable");
             let item_data = form.getValues();
-            let item_id = table.getLastId() + 1;
+
             if (form.validate()) {
               if (item_data.id) {
                 table.updateItem(item_data.id, item_data);
                 webix.message({ text: "validation is successful.", type: "success" });
               } else {
-                item_data.id = item_id;
                 table.add(item_data);
                 webix.message({ text: "validation is successful.", type: "success" });
               }

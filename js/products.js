@@ -1,7 +1,5 @@
 export const products = {
   view: "treetable",
-  prerender: true,
-  scroll: "auto",
   columns: [
     { id: "id", header: "", width: 50 },
     { id: "title", header: "Title", template: "{common.treetable()} #title#", fillspace: true },
