@@ -20,11 +20,12 @@ const dashboard_datataTable = {
     }
   ],
   onClick: {
-    removeItem: function (e, item) {
-      if ($$("form").id == item.row);
-      $$("form").clear();
-
-      this.remove(item);
+    removeItem: function (e, id) {
+      if ($$("form").getValues().id) {
+        $$("form").clear();
+        $$("form").clearValidation();
+      }
+      this.remove(id);
 
       return false;
     }
