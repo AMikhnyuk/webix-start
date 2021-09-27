@@ -21,7 +21,7 @@ const dashboard_datataTable = {
   ],
   onClick: {
     removeItem: function (e, id) {
-      if ($$("form").getValues().id) {
+      if ($$("form").getValues().id == id.row) {
         $$("form").clear();
         $$("form").clearValidation();
       }
