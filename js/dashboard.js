@@ -21,7 +21,7 @@ const dashboard_datataTable = {
   ],
   onClick: {
     removeItem: function (e, id) {
-      if ($$("form").getValues().id == id.row) {
+      if ($$("form").getValues().id === id.row) {
         $$("form").clear();
         $$("form").clearValidation();
       }
@@ -69,11 +69,10 @@ const dashboard_form = {
             if (form.validate()) {
               if (item_data.id) {
                 table.updateItem(item_data.id, item_data);
-                webix.message({ text: "validation is successful.", type: "success" });
               } else {
                 table.add(item_data);
-                webix.message({ text: "validation is successful.", type: "success" });
               }
+              webix.message({ text: "validation is successful.", type: "success" });
             }
           }
         },

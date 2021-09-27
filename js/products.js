@@ -5,7 +5,7 @@ export const products = {
     { id: "title", header: "Title", template: "{common.treetable()} #title#", fillspace: true },
     { id: "price", header: "Price", width: 300 }
   ],
-  select: true,
+  select: "cell",
   id: "Products",
   ready: function () {
     this.openAll();

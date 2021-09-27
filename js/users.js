@@ -19,7 +19,7 @@ const users_list = {
             onTimedKeypress: function () {
               let text = this.getValue().toLowerCase();
               $$("users_list").filter(function (obj) {
-                return obj.name.toLowerCase().indexOf(text) != -1;
+                return obj.name.toLowerCase().indexOf(text) !== -1;
               });
             }
           },
@@ -56,7 +56,7 @@ const users_list = {
         return `<span class="users_list_item">${obj.name} from ${obj.country}<span><span class="removeListItem"><i class="webix_icon wxi-close"></i></span>`;
       },
       id: "users_list",
-      css: "webix_data_border",
+      css: "users_list",
       onClick: {
         removeListItem: function (e, id) {
           this.remove(id);
