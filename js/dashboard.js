@@ -1,3 +1,27 @@
+import { getRandomInt } from "./useful_functons.js";
+import { category_data } from "../data/categories.js";
+const dashboard_tabbar = {
+  view: "tabbar",
+  id: "dashboard_tabbar",
+  value: "all",
+  options: [
+    {
+      id: "all",
+      value: "All"
+    },
+    {
+      id: "old",
+      value: "Old"
+    },
+    { id: "modern", value: "Modern" },
+    { id: "new", value: "New" }
+  ],
+  on: {
+    onAfterTabClick: function () {
+      $$("datatable").filterByAll();
+    }
+  }
+};
 const dashboard_datataTable = {
   view: "datatable",
   id: "datatable",
@@ -10,8 +34,14 @@ const dashboard_datataTable = {
       css: { background: "#F4F5F9", "border-right": "1px solid #DADEE0" }
     },
     { id: "title", fillspace: true, header: ["Film Title", { content: "textFilter" }], sort: "string" },
-    { id: "year", header: ["Released", { content: "textFilter" }], width: 150, sort: "int" },
-    { id: "votes", header: ["Votes", { content: "textFilter" }], width: 150, sort: "string" },
+    {
+      id: "categoryId",
+      header: ["Category", { content: "selectFilter" }],
+      collection: category_data
+    },
+    { id: "rating", header: ["Rating", { content: "textFilter" }], width: 100, sort: "int" },
+    { id: "votes", header: ["Votes", { content: "textFilter" }], width: 100, sort: "string" },
+    { id: "year", header: "Year", width: 70 },
     {
       id: "empty",
       header: "",
@@ -31,9 +61,13 @@ const dashboard_datataTable = {
     }
   },
   on: {
-    onAfterSelect: function (id) {
-      let value = this.getItem(id);
-      $$("form").setValues(value);
+    onAfterSelect: function () {
+      $$("form").clearValidation();
+    }
+  },
+  scheme: {
+    $init: function (obj) {
+      obj.categoryId = getRandomInt(1, 5);
     }
   },
   hover: "datatable_row_hover",
@@ -62,16 +96,9 @@ const dashboard_form = {
           css: "webix_primary",
           id: "form_button_add",
           click: function () {
-            let form = $$("form");
-            let table = $$("datatable");
-            let item_data = form.getValues();
-
+            const form = $$("form");
             if (form.validate()) {
-              if (item_data.id) {
-                table.updateItem(item_data.id, item_data);
-              } else {
-                table.add(item_data);
-              }
+              form.save();
               webix.message({ text: "validation is successful.", type: "success" });
             }
           }
@@ -89,6 +116,7 @@ const dashboard_form = {
               .then(function () {
                 $$("form").clear();
                 $$("form").clearValidation();
+                $$("datatable").unselectAll();
               });
           }
         }
@@ -110,11 +138,12 @@ const dashboard_form = {
       return newValue < 100000;
     }
   },
+
   elementsConfig: {
     bottomPadding: 18
   }
 };
 export const dashboard = {
-  cols: [dashboard_datataTable, dashboard_form],
+  cols: [{ rows: [dashboard_tabbar, dashboard_datataTable] }, dashboard_form],
   id: "Dashboard"
 };

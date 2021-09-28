@@ -1,10 +1,19 @@
+import { getRandomInt } from "./useful_functons.js";
+import { country_list } from "../data/countries.js";
+
 const users_chart = {
   view: "chart",
   id: "users_chart",
   type: "bar",
-  value: "#age#",
+  value: "#count#",
   xAxis: {
-    template: "#age#"
+    title: "Country",
+    template: "#country#"
+  },
+  yAxis: {
+    start: 0,
+    end: 10,
+    step: 2
   }
 };
 const users_list = {
@@ -28,9 +37,9 @@ const users_list = {
         },
         {
           view: "button",
+          id: "sort_asc_btn",
           value: "Sort asc",
           css: "webix_primary",
-          id: "sort_asc_btn",
           click: function () {
             $$("users_list").sort("name", "asc");
           }
@@ -43,6 +52,25 @@ const users_list = {
           click: function () {
             $$("users_list").sort("name", "desc");
           }
+        },
+        {
+          view: "button",
+          value: "Add",
+          css: "webix_primary",
+          id: "add_actor",
+          click: function () {
+            const randomCoutry = getRandomInt(1, 9);
+            const actorAge = getRandomInt(1, 100);
+            const actorCountry = webix.copy(country_list).find(function (elem) {
+              return elem.id === randomCoutry;
+            });
+
+            $$("users_list").add({
+              name: "Red Rum",
+              age: actorAge,
+              country: actorCountry.value
+            });
+          }
         }
       ],
       padding: 5,
@@ -51,31 +79,30 @@ const users_list = {
       }
     },
     {
-      view: "list",
+      view: "editlist",
       template: function (obj) {
         return `<span class="users_list_item">${obj.name} from ${obj.country}<span><span class="removeListItem"><i class="webix_icon wxi-close"></i></span>`;
       },
       id: "users_list",
       css: "users_list",
+      editable: true,
+      editor: "text",
+      editValue: "name",
       onClick: {
         removeListItem: function (e, id) {
           this.remove(id);
           return false;
         }
       },
-      on: {
-        onAfterRender: function (e, id) {
-          this.clearCss("hightlite");
-          for (let i of this.data.order.slice(0, 5)) {
-            this.addCss(i, "hightlite");
-          }
-        },
-        onAfterDelete: function (e, id) {
-          this.clearCss("hightlite");
-          for (let i of this.data.order.slice(0, 5)) {
-            this.addCss(i, "hightlite");
+      scheme: {
+        $change: function (obj) {
+          if (obj.age < 26) {
+            obj.$css = "hightlight";
           }
         }
+      },
+      rules: {
+        name: webix.rules.isNotEmpty
       }
     }
   ]
