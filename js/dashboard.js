@@ -34,7 +34,11 @@ const dashboard_datataTable = {
       css: { background: "#F4F5F9", "border-right": "1px solid #DADEE0" }
     },
     { id: "title", fillspace: true, header: ["Film Title", { content: "textFilter" }], sort: "string" },
-    { id: "category", header: ["Category", { content: "selectFilter" }] },
+    {
+      id: "categoryId",
+      header: ["Category", { content: "selectFilter" }],
+      collection: category_data
+    },
     { id: "rating", header: ["Rating", { content: "textFilter" }], width: 100, sort: "int" },
     { id: "votes", header: ["Votes", { content: "textFilter" }], width: 100, sort: "string" },
     { id: "year", header: "Year", width: 70 },
@@ -58,13 +62,7 @@ const dashboard_datataTable = {
   },
   scheme: {
     $init: function (obj) {
-      let randId = getRandomInt(1, 5);
-      for (let catobj of webix.copy(category_data)) {
-        if (catobj.id == randId) {
-          obj.category = catobj.value;
-          break;
-        }
-      }
+      obj.categoryId = getRandomInt(1, 5);
     }
   },
   hover: "datatable_row_hover",

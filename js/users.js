@@ -1,5 +1,5 @@
 import { getRandomInt } from "./useful_functons.js";
-import { country_list } from "../data/country_list.js";
+import { country_list } from "../data/countries.js";
 
 const users_chart = {
   view: "chart",
@@ -59,19 +59,16 @@ const users_list = {
           css: "webix_primary",
           id: "add_actor",
           click: function () {
-            let randomCoutry = getRandomInt(1, 8);
+            let randomCoutry = getRandomInt(1, 9);
             let actorAge = getRandomInt(1, 100);
-            let actorCountry = "";
-            for (let actobj of webix.copy(country_list)) {
-              if (actobj.id === randomCoutry) {
-                actorCountry = actobj.value;
-                break;
-              }
-            }
+            let actorCountry = webix.copy(country_list).find(function (elem) {
+              return elem.id === randomCoutry;
+            });
+
             $$("users_list").add({
               name: "Red Rum",
               age: actorAge,
-              country: actorCountry
+              country: actorCountry.value
             });
           }
         }
