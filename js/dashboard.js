@@ -91,8 +91,7 @@ const dashboard_form = {
           css: "webix_primary",
           id: "form_button_add",
           click: function () {
-            let form = $$("form");
-
+            const form = $$("form");
             if (form.validate()) {
               form.save();
               webix.message({ text: "validation is successful.", type: "success" });

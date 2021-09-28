@@ -59,9 +59,9 @@ const users_list = {
           css: "webix_primary",
           id: "add_actor",
           click: function () {
-            let randomCoutry = getRandomInt(1, 9);
-            let actorAge = getRandomInt(1, 100);
-            let actorCountry = webix.copy(country_list).find(function (elem) {
+            const randomCoutry = getRandomInt(1, 9);
+            const actorAge = getRandomInt(1, 100);
+            const actorCountry = webix.copy(country_list).find(function (elem) {
               return elem.id === randomCoutry;
             });
 
