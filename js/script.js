@@ -34,6 +34,7 @@ webix.ready(function () {
       by: "country",
       map: { count: ["country", "count"] }
     });
+    $$("users_chart").sort("#country#");
   });
 
   $$("datatable").registerFilter(

@@ -37,9 +37,9 @@ const users_list = {
         },
         {
           view: "button",
+          id: "sort_asc_btn",
           value: "Sort asc",
           css: "webix_primary",
-          id: "sort_asc_btn",
           click: function () {
             $$("users_list").sort("name", "asc");
           }

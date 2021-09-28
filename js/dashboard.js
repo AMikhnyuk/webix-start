@@ -60,6 +60,11 @@ const dashboard_datataTable = {
       return false;
     }
   },
+  on: {
+    onAfterSelect: function () {
+      $$("form").clearValidation();
+    }
+  },
   scheme: {
     $init: function (obj) {
       obj.categoryId = getRandomInt(1, 5);
@@ -111,6 +116,7 @@ const dashboard_form = {
               .then(function () {
                 $$("form").clear();
                 $$("form").clearValidation();
+                $$("datatable").unselectAll();
               });
           }
         }
