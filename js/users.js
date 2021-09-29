@@ -1,5 +1,10 @@
 import { getRandomInt } from "./useful_functons.js";
 import { country_list } from "../data/countries.js";
+import { users_data } from "../data/users.js";
+
+export const usersCollection = new webix.DataCollection({
+  data: users_data
+});
 
 const users_chart = {
   view: "chart",
@@ -65,7 +70,7 @@ const users_list = {
               return elem.id === randomCoutry;
             });
 
-            $$("users_list").add({
+            usersCollection.add({
               name: "Red Rum",
               age: actorAge,
               country: actorCountry.value
@@ -92,13 +97,6 @@ const users_list = {
         removeListItem: function (e, id) {
           this.remove(id);
           return false;
-        }
-      },
-      scheme: {
-        $change: function (obj) {
-          if (obj.age < 26) {
-            obj.$css = "hightlight";
-          }
         }
       },
       rules: {
