@@ -1,10 +1,6 @@
 import { getRandomInt } from "./useful_functons.js";
 import { country_list } from "../data/countries.js";
-import { users_data } from "../data/users.js";
-
-export const usersCollection = new webix.DataCollection({
-  data: users_data
-});
+import { usersCollection } from "../js/collections.js";
 
 const users_chart = {
   view: "chart",

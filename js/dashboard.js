@@ -1,5 +1,5 @@
 import { getRandomInt } from "./useful_functons.js";
-import { categoryCollection } from "../js/admin.js";
+import { categoryCollection } from "./collections.js";
 const dashboard_tabbar = {
   view: "tabbar",
   id: "dashboard_tabbar",
@@ -106,7 +106,6 @@ const dashboard_form = {
           click: function () {
             const form = $$("form");
             if (form.validate()) {
-              console.log(form.getValues());
               form.save();
               webix.message({ text: "validation is successful.", type: "success" });
             }

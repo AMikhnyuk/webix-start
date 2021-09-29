@@ -1,8 +1,8 @@
 import { content, footer, header } from "./rows.js";
 import { data } from "../data/data.js";
 import { products_data } from "../data/products_data.js";
-import { categoryCollection } from "../js/admin.js";
-import { usersCollection } from "../js/users.js";
+import { categoryCollection } from "../js/collections.js";
+import { usersCollection } from "../js/collections.js";
 
 webix.ready(function () {
   webix.protoUI(
@@ -26,14 +26,12 @@ webix.ready(function () {
   });
   $$("list").select("Dashboard");
   $$("datatable").parse(webix.copy(data));
-  //$$("users_list").parse(webix.copy(users_data));
 
   $$("Products").parse(webix.copy(products_data));
   $$("form").bind($$("datatable"));
   $$("users_list").sync(usersCollection, function () {
     const users_list = $$("users_list");
-    const users = users_list.serialize();
-    users.forEach((elem) => {
+    users_list.data.each((elem) => {
       if (elem.age < 26) {
         users_list.addCss(elem.id, "hightlight");
       }

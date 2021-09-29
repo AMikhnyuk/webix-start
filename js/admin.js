@@ -1,8 +1,4 @@
-import { category_data } from "../data/categories.js";
-
-export const categoryCollection = new webix.DataCollection({
-  data: category_data
-});
+import { categoryCollection } from "./collections.js";
 
 const admin_datatable = {
   view: "datatable",
@@ -44,11 +40,12 @@ const admin_form = {
           value: "Delete",
           css: "webix_primary",
           click: function () {
+            const table = $$("admin_datatable");
             const form = this.getFormView();
             if (form.getValues().id) {
-              categoryCollection.remove($$("admin_datatable").getSelectedId());
+              categoryCollection.remove(table.getSelectedId());
               form.clear();
-              $$("admin_datatable").unselectAll();
+              table.unselectAll();
             }
           }
         }
