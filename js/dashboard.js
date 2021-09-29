@@ -1,5 +1,5 @@
 import { getRandomInt } from "./useful_functons.js";
-import { category_data } from "../data/categories.js";
+import { categoryCollection } from "./collections.js";
 const dashboard_tabbar = {
   view: "tabbar",
   id: "dashboard_tabbar",
@@ -37,7 +37,7 @@ const dashboard_datataTable = {
     {
       id: "categoryId",
       header: ["Category", { content: "selectFilter" }],
-      collection: category_data
+      collection: categoryCollection
     },
     { id: "rating", header: ["Rating", { content: "textFilter" }], width: 100, sort: "int" },
     { id: "votes", header: ["Votes", { content: "textFilter" }], width: 100, sort: "string" },
@@ -67,7 +67,9 @@ const dashboard_datataTable = {
   },
   scheme: {
     $init: function (obj) {
-      obj.categoryId = getRandomInt(1, 5);
+      if (!obj.categoryId) {
+        obj.categoryId = getRandomInt(1, 5);
+      }
     }
   },
   hover: "datatable_row_hover",
@@ -88,6 +90,12 @@ const dashboard_form = {
     },
     { view: "text", label: "Rating", name: "rating", width: 350, invalidMessage: "Rating cannot be empty or 0" },
     { view: "text", label: "Votes", name: "votes", width: 350, invalidMessage: "Votes should be less than 100000" },
+    {
+      view: "richselect",
+      name: "categoryId",
+      label: "Category",
+      options: categoryCollection
+    },
     {
       cols: [
         {
@@ -121,8 +129,10 @@ const dashboard_form = {
           }
         }
       ],
+
       borderless: true
     },
+
     {}
   ],
   rules: {

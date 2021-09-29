@@ -1,6 +1,7 @@
 import { dashboard } from "./dashboard.js";
 import { users } from "./users.js";
 import { products } from "./products.js";
+import { admin } from "./admin.js";
 
 export const header = {
   view: "toolbar",
@@ -63,7 +64,7 @@ export const content = {
     },
     { view: "resizer" },
     {
-      cells: [dashboard, users, products, { id: "Admin" }],
+      cells: [dashboard, users, products, admin],
       gravity: 6
     }
   ]
